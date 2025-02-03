@@ -5,6 +5,7 @@ import { MdOutlineTask } from "react-icons/md";
 import { PiAtBold } from "react-icons/pi";
 import { RiContactsLine } from "react-icons/ri";
 import { FaBars, FaTimes, FaHome, FaInfoCircle, FaPhone, FaInstagram, FaGithub, FaGitlab, FaLinkedin } from 'react-icons/fa';
+import { LuPencilLine } from "react-icons/lu";
 import { useRouter } from 'next/router';
 
 const Sidebar = ({ children }) => {
@@ -41,7 +42,7 @@ const Sidebar = ({ children }) => {
       ) : (
         // Sidebar Desktop
         <div
-          className={`fixed h-screen bg-white text-gray-800 transition-all duration-300 ease-in-out transform shadow-xl shadow-gray-400 rounded-r-3xl ${
+          className={`fixed h-screen bg-white text-gray-800 transition-all duration-300 ease-in-out transform shadow-lg shadow-gray-300 rounded-r-3xl ${
             isOpen ? 'w-64' : 'w-16'
           } p-4 flex flex-col items-center`}
           onMouseEnter={() => setIsOpen(true)}
@@ -88,9 +89,9 @@ const Sidebar = ({ children }) => {
           {/* Navigasi */}
           <nav className="mt-8 w-full">
             <ul className="w-full flex flex-col items-center">
-              {["/", "/about", "/projects", "/contact"].map((path, index) => {
-                const icons = [<TbLayoutDashboard />, <PiAtBold />, <MdOutlineTask  />, <RiContactsLine />];
-                const labels = ["Home", "About", "Projects", "Contact"];
+              {["/", "/about", "/projects", "/contact", "/blog"].map((path, index) => {
+                const icons = [<TbLayoutDashboard />, <PiAtBold />, <MdOutlineTask  />, <RiContactsLine />, <LuPencilLine />];
+                const labels = ["Home", "About", "Projects", "Contact", "Blog"];
                 const isActive = router.pathname === path;
                 return (
                   <li
@@ -117,9 +118,9 @@ const Sidebar = ({ children }) => {
             isOpen ? 'translate-y-0' : '-translate-y-full'
           }`}
         >
-          {["/", "/about", "/projects", "/contact"].map((path, index) => {
-            const icons = [<TbLayoutDashboard />, <PiAtBold />, <MdOutlineTask  />, <RiContactsLine />];
-            const labels = ["Home", "About", "Projects", "Contact"];
+          {["/", "/about", "/projects", "/contact", "/blog"].map((path, index) => {
+            const icons = [<TbLayoutDashboard />, <PiAtBold />, <MdOutlineTask  />, <RiContactsLine />, <LuPencilLine />];
+            const labels = ["Home", "About", "Projects", "Contact", "Blog"];
             const isActive = router.pathname === path;
             return (
               <Link

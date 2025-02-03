@@ -1,8 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaRocket, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaRocket, FaLinkedin, FaInstagram, FaGithub, FaDiscord, FaNpm } from 'react-icons/fa';
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 export default function Home() {
+  const buttonColors = {
+    github: "bg-gray-900 hover:bg-gray-700",
+    linkedin: "bg-blue-600 hover:bg-blue-500",
+    npm: "bg-red-600 hover:bg-red-500",
+    discord: "bg-purple-600 hover:bg-purple-500",
+  };
+
+  const cardBackgrounds = {
+    github: "bg-gray-100",
+    linkedin: "bg-blue-100",
+    npm: "bg-red-100",
+    discord: "bg-purple-100",
+  };
+
+  const cardIcons = {
+    github: <FaGithub className="text-4xl text-gray-900" />, 
+    linkedin: <FaLinkedin className="text-4xl text-blue-600" />, 
+    npm: <FaNpm className="text-4xl text-red-600" />, 
+    discord: <FaDiscord className="text-4xl text-purple-600" />
+  };
+
   return (
     <div className="sm:w-full md:w-3/5 font-sans p-8 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
       <div className="max-w-[1200px] w-full font-sans flex flex-col justify-center items-center">
@@ -12,30 +34,34 @@ export default function Home() {
           <p className="text-gray-500 mb-4">Let`s get in touch</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
             {[
-              { title: 'Barenganaja', desc: 'Building responsive and high-performance websites.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaHtml5, color: '#E44D26' }, { icon: FaCss3Alt, color: '#1572B6' }, { icon: FaJs, color: '#F7DF1E' }] },
-              { title: 'Barenganaja', desc: 'Designing intuitive interfaces and captivating experiences.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaHtml5, color: '#E44D26' }, { icon: FaCss3Alt, color: '#1572B6' }] },
-              { title: 'Barenganaja', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaJs, color: '#F7DF1E' }, { icon: FaReact, color: '#61DBFB' }] },
-              { title: 'Barenganaja', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaReact, color: '#61DBFB' }] }
+              { title: 'Explore the code', desc: 'Explore the source code for all my projects on GitHub.', buttonText: 'View on GitHub', link: 'https://github.com', color: buttonColors.github, bg: cardBackgrounds.github, icon: cardIcons.github },
+              { title: 'Let`s connect', desc: 'Connect for collaboration or explore my professional experience.', buttonText: 'Connect with me', link: 'https://linkedin.com', color: buttonColors.linkedin, bg: cardBackgrounds.linkedin, icon: cardIcons.linkedin },
+              { title: 'Open source', desc: 'Install and contribute to my open-source projects.', buttonText: 'Go to NPM', link: 'https://npmjs.com', color: buttonColors.npm, bg: cardBackgrounds.npm, icon: cardIcons.npm },
+              { title: 'Chat with the community', desc: 'Join over 1,000+ other developers on The Code Agysta', buttonText: 'Join the community', link: 'https://discord.com', color: buttonColors.discord, bg: cardBackgrounds.discord, icon: cardIcons.discord }
             ].map((project, index) => (
                 <motion.div
                     key={index}
-                    className="p-0 rounded-lg shadow-md border border-indigo-500 bg-white text-gray-900 flex flex-col w-full max-w-[350px] hover:glow-effect"
+                    className={`p-0 rounded-lg shadow-md border bg-white text-gray-900 flex flex-col w-full max-w-[350px] ${project.bg} hover:glow-effect`}
                     whileHover={{
                     scale: 1.05,
                     }}
                     transition={{ duration: 0.3 }}
                 >
-                <img src={project.image} alt={project.title} className="w-full h-32 object-cover rounded-t-lg" />
-                <div className="p-5">
-                  <h3 className="text-lg font-medium mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm">{project.desc}</p>
-                  <div className="flex gap-2 mt-3">
-                    {project.techIcons.map((tech, index) => (
-                      <tech.icon key={index} className="text-xl" style={{ color: tech.color }} />
-                    ))}
-                  </div>
+                <div className="p-5 relative">
+                    <h3 className="text-lg font-medium mb-2">
+                        {project.title}
+                    </h3>
+                    <p className="text-sm mb-4">{project.desc}</p>
+                    <motion.button
+                        className={`px-4 py-2 rounded-md text-white text-sm font-medium flex items-center gap-2 shadow-md ${project.color}`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => window.location.href = project.link}
+                    >
+                        {project.buttonText}
+                        <FaArrowUpRightFromSquare />
+                    </motion.button>
+                    <div className="absolute bottom-0 right-2">{project.icon}</div>
                 </div>
               </motion.div>
             ))}
@@ -52,6 +78,7 @@ export default function Home() {
             className="px-6 py-2 rounded-md bg-gray-900 text-white text-sm font-medium shadow-md hover:bg-gray-800"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => window.location.href = 'https://example.com/contact'}
           >
             Contact Me
           </motion.button>
