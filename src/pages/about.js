@@ -60,7 +60,7 @@ function AutoScrollCarousel() {
 
 export default function Home() {
   return (
-    <div className="sm:w-full md:w-3/5 font-sans p-8 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
+    <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
       <div className="max-w-[1200px] w-full font-sans flex flex-col justify-center items-center">
         {/* Header Section */}
         <header className="mb-8">
@@ -130,7 +130,7 @@ export default function Home() {
             ].map((skill, index) => (
               <motion.div
                 key={index}
-                className="p-4 rounded-xl shadow-md border border-gray-300 bg-white text-gray-900 flex flex-row w-full max-w-[350px] gap-4"
+                className="p-4 rounded-xl shadow-md border border-gray-300 bg-white text-gray-900 flex flex-row w-full gap-4"
                 whileHover={{ scale: 1.05 }}
               >
                 <img
@@ -165,8 +165,8 @@ export default function Home() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="p-6 rounded-lg shadow-md bg-indigo-600 text-white text-center mb-8 w-full max-w-[750px]">
-          <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-4">
+        <section className="p-6 rounded-lg shadow-md bg-indigo-600 text-white text-center mb-8 w-full">
+          <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-2">
             <FaRocket /> Let's Work Together!
           </h2>
           <p className="mb-4">I'm open for freelance projects. Let's collaborate!</p>
@@ -180,19 +180,35 @@ export default function Home() {
         </section>
 
         {/* Footer Section */}
-        <footer className="text-center text-sm text-gray-600 w-full">
-          <div className="flex justify-center gap-6 mb-4">
-            {['About', 'Blog', 'Project', 'Contact'].map((item, index) => (
-              <a key={index} href="#" className="hover:underline">{item}</a>
-            ))}
-          </div>
-          <p>Let's Connect</p>
-          <div className="flex justify-center gap-4 mt-2">
-            {[FaLinkedin, FaInstagram, FaGithub].map((Icon, index) => (
-              <a key={index} href="#" className="text-xl text-gray-700 hover:text-gray-900" aria-label="Social Link">
-                <Icon />
-              </a>
-            ))}
+        <footer className="w-full">
+          <div className="max-w-4xl mx-auto text-center">
+            <nav className="flex justify-center gap-6 mb-4 text-sm font-medium">
+              {["About", "Project", "Contact", "Blog"].map((item, index) => (
+                <a key={index} href="#" className="hover:text-gray-700 transition duration-300">
+                  {item}
+                </a>
+              ))}
+            </nav>
+            
+            <p className="text-base text-indigo-500 font-semibold">Let's Connect</p>
+            <div className="flex justify-center gap-4 mt-3">
+              {[
+                { Icon: FaLinkedin, link: "#" },
+                { Icon: FaInstagram, link: "#" },
+                { Icon: FaGithub, link: "#" },
+              ].map(({ Icon, link }, index) => (
+                <a
+                  key={index}
+                  href={link}
+                  className="text-xl text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition duration-300"
+                  aria-label="Social Link"
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
+            
+            <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} Satria Agysta. All rights reserved.</p>
           </div>
         </footer>
       </div>
