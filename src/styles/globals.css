@@ -7,6 +7,15 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
 @layer base {
     /* Menyembunyikan scrollbar tetapi tetap bisa scroll */
     .custom-scrollbar::-webkit-scrollbar {

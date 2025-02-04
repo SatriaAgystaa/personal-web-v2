@@ -50,10 +50,10 @@ export default function Home() {
           <h2 className="text-2xl font-medium text-gray-900 dark:text-white mb-6 transition-all duration-300">Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
             {[ 
-              { icon: FaLaptopCode, title: 'Web Development', desc: 'Building responsive and high-performance websites.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
-              { icon: LuPalette, title: 'UI/UX Design', desc: 'Designing intuitive interfaces and captivating experiences.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
-              { icon: FaRegCommentDots, title: 'Consultation', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
-              { icon: HiOutlinePaintBrush, title: 'Ilustrator', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' }
+              { icon: FaLaptopCode, title: 'Web Development', desc: 'Building responsive websites with high performance, ensuring a fast, smooth, and optimized user experience across all devices.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
+              { icon: LuPalette, title: 'UI/UX Design', desc: 'Creating intuitive UI/UX designs that ensure seamless navigation, enhance user engagement, and deliver a visually appealing experience.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
+              { icon: FaRegCommentDots, title: 'Consultation', desc: 'Providing expert consultation to help you refine strategies, solve challenges, and enhance your digital presence with tailored solutions.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' },
+              { icon: HiOutlinePaintBrush, title: 'Ilustrator', desc: 'Bringing ideas to life through custom illustrations, blending creativity and detail to deliver unique visual stories.', image: 'https://i.pinimg.com/736x/75/7d/f0/757df0e3c8d1975c9a27e4e896ae5ab0.jpg' }
             ].map((service, index) => (
               <motion.div
                 key={index}
