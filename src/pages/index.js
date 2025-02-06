@@ -33,7 +33,7 @@ export default function Home() {
             ].map((skill, index) => (
               <motion.div
                 key={index}
-                className="p-6 rounded-lg shadow-md border border-indigo-500 dark:border-[#262626] bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white dark:text-white flex flex-col w-full max-w-[350px] transition-all duration-300"
+                className="p-6 rounded-lg shadow-md border border-indigo-500 dark:border-indigo-900 bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white dark:text-white flex flex-col w-full max-w-[350px] transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
               >
                 <h3 className="text-lg font-medium flex items-center gap-2 mb-2">
@@ -57,7 +57,7 @@ export default function Home() {
             ].map((service, index) => (
               <motion.div
                 key={index}
-                className="p-0 rounded-lg shadow-md border border-indigo-500 dark:border-[#262626] bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white dark:text-white flex flex-col w-full transition-all duration-300"
+                className="p-0 rounded-lg shadow-md border border-indigo-500 dark:border-indigo-900 bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white dark:text-white flex flex-col w-full transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
               >
                 <img src={service.image} alt={service.title} className="w-full h-32 object-cover rounded-t-lg" />
@@ -73,7 +73,7 @@ export default function Home() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="p-6 rounded-lg shadow-md bg-indigo-600 dark:bg-[#262626] text-white text-center mb-8 w-full transition-all duration-300">
+        <section className="p-6 rounded-lg shadow-md bg-indigo-600 dark:bg-indigo-900 text-white text-center mb-8 w-full transition-all duration-300">
           <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-2">
             <IoRocketOutline  /> Let's Work Together!
           </h2>
