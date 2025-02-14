@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { IoRocketOutline } from "react-icons/io5";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaRocket, FaLinkedin, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaRocket, FaLinkedin, FaInstagram, FaGithub, FaLaravel, FaBootstrap } from 'react-icons/fa';
+import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
+import { SiExpress, SiDbeaver, SiPostgresql } from "react-icons/si";
+import { DiMysql } from "react-icons/di";
 
 export default function Home() {
   return (
@@ -13,10 +17,10 @@ export default function Home() {
           <p className="text-gray-500 dark:text-gray-300 mb-4">Showcasing my passion for technology, design, and problem-solving through code.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
             {[ 
-              { title: 'Barenganaja', desc: 'Building responsive and high-performance websites.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaHtml5, color: '#E44D26' }, { icon: FaCss3Alt, color: '#1572B6' }, { icon: FaJs, color: '#F7DF1E' }] },
-              { title: 'Barenganaja', desc: 'Designing intuitive interfaces and captivating experiences.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaHtml5, color: '#E44D26' }, { icon: FaCss3Alt, color: '#1572B6' }] },
-              { title: 'Barenganaja', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaJs, color: '#F7DF1E' }, { icon: FaReact, color: '#61DBFB' }] },
-              { title: 'Barenganaja', desc: 'Providing expert advice on web technology strategies.', image: 'https://i.pinimg.com/736x/c4/00/7d/c4007d74ef3240555cd344dc1f49a792.jpg', techIcons: [{ icon: FaReact, color: '#61DBFB' }] }
+              { title: 'AbsenQu', desc: 'Web for efficient student tardiness recap and monitoring.', image: '/images/rekap.jpg', techIcons: [{ icon: FaLaravel, color: '#FF2424' }, { icon: DiMysql, color: '#FF7733' }, { icon: FaBootstrap, color: '#A034FF' }, { icon: RiTailwindCssFill, color: '#34A4FF' }] },
+              { title: 'Personal Web', desc: 'Old personal website showcasing portfolio, and projects.', image: '/images/prib.png', techIcons: [{ icon: FaHtml5, color: '#E44D26' }, { icon: FaCss3Alt, color: '#1572B6' }, { icon: RiTailwindCssFill, color: '#34A4FF' }] },
+              { title: 'Ciu Insurance', desc: 'CIU Insurance website provides insurance services with claim management features.', image: '/images/ciu.png', techIcons: [{ icon: SiPostgresql, color: '#2E96CF' }, { icon: SiDbeaver, color: '#634946' }, { icon: RiNextjsFill, color: '#131313' }, { icon: RiTailwindCssFill, color: '#34A4FF' }, { icon: FaBootstrap, color: '#A034FF' }, { icon: SiExpress, color: '#FFDB27' }, { icon: FaLaravel, color: '#FF2424' }] },
+              { title: 'Barenganaja', desc: 'BarenganAja website enables secure and practical sharing of premium accounts', image: '/images/barenganaja.jpg', techIcons: [{ icon: SiPostgresql, color: '#2E96CF' }, { icon: SiDbeaver, color: '#634946' }, { icon: RiNextjsFill, color: '#131313' }, { icon: RiTailwindCssFill, color: '#34A4FF' }, { icon: SiExpress, color: '#FFDB27' }] }
             ].map((project, index) => (
                 <motion.div
                     key={index}
@@ -42,25 +46,27 @@ export default function Home() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="p-6 rounded-lg shadow-md bg-indigo-600 dark:bg-indigo-900 text-white text-center mb-8 w-full transition-all duration-300">
+        <section className="p-6 rounded-lg shadow-md bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 dark:from-indigo-900 dark:via-indigo-700 dark:to-indigo-500 text-white text-center mb-8 w-full transition-all duration-300">
           <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-2">
-            <IoRocketOutline  /> Let's Work Together!
+            <IoRocketOutline /> Let's Work Together!
           </h2>
           <p className="mb-4 text-gray-300 dark:text-gray-300">I'm open for freelance projects. Let's collaborate!</p>
-          <motion.button
-            className="px-6 py-2 rounded-md bg-gray-900 dark:bg-[#0a0a0a] text-white text-sm font-medium shadow-md hover:bg-gray-800"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact Me
-          </motion.button>
+          <Link href="https://wa.me/6285710386045" passHref>
+            <motion.button
+              className="px-6 py-2 rounded-md bg-gray-900 dark:bg-[#0a0a0a] text-white text-sm font-medium shadow-md hover:bg-gray-800"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Contact Me
+            </motion.button>
+          </Link>
         </section>
 
         {/* Footer Section */}
         <footer className="w-full">
           <div className="max-w-4xl mx-auto text-center">
             <nav className="flex justify-center gap-6 mb-4 text-sm font-medium">
-              {["About", "Project", "Contact", "Blog"].map((item, index) => (
+              {["About", "Project", "Contact"].map((item, index) => (
                 <a key={index} href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition duration-300">
                   {item}
                 </a>
