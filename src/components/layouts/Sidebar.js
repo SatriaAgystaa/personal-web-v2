@@ -56,7 +56,7 @@ const Sidebar = ({ children }) => {
             isOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          {["/", "/about", "/projects", "/contact", "/blog"].map(
+          {["/", "/about", "/projects", "/contact"].map(
             (path, index) => {
               const icons = [
                 <TbLayoutDashboard />,
@@ -65,7 +65,7 @@ const Sidebar = ({ children }) => {
                 <RiContactsLine />,
                 <LuPencilLine />,
               ];
-              const labels = ["Home", "About", "Projects", "Contact", "Blog"];
+              const labels = ["Home", "About", "Projects", "Contact"];
               const isActive = router.pathname === path;
               return (
                 <Link
@@ -188,7 +188,7 @@ const Sidebar = ({ children }) => {
           {/* Navigasi */}
           <nav className="mt-8 w-full">
             <ul className="w-full flex flex-col items-center">
-              {["/", "/about", "/projects", "/contact", "/blog"].map(
+              {["/", "/about", "/projects", "/contact"].map(
                 (path, index) => {
                   const icons = [
                     <TbLayoutDashboard />,
@@ -201,8 +201,7 @@ const Sidebar = ({ children }) => {
                     "Home",
                     "About",
                     "Projects",
-                    "Contact",
-                    "Blog",
+                    "Contact"
                   ];
                   const isActive = router.pathname === path;
                   return (
