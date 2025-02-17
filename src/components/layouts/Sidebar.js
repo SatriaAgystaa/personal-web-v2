@@ -142,7 +142,7 @@ const Sidebar = ({ children }) => {
               } rounded-full border-2 dark:border-[#0a0a0a] shadow-lg shadow-gray-400 dark:shadow-[#262626]`}
             >
               <img
-                src="./images/12209409.jpg"
+                src="./images/prib.jpg"
                 alt="Profile"
                 className="w-full h-full rounded-full object-cover"
               />
