@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUsers, FaRegLightbulb, FaLaptopCode, FaPalette, FaComments, FaRocket, FaLinkedin, FaInstagram, FaGithub, FaPaintBrush } from 'react-icons/fa';
 import { FiUsers } from "react-icons/fi";
 import { LuPalette } from "react-icons/lu";
@@ -6,12 +6,20 @@ import { FaRegCommentDots } from "react-icons/fa6";
 import { HiOutlinePaintBrush } from "react-icons/hi2";
 import { IoRocketOutline } from "react-icons/io5";
 import { motion } from 'framer-motion';
-import Typical from "react-typical";
 import Link from 'next/link';
 
 const names = ["Satria Agysta", "Frontend Developer", "Tech Enthusiast"];
 
 export default function Home() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % names.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
       <div className="max-w-[1200px] w-full font-sans flex flex-col justify-center items-center">
@@ -19,20 +27,23 @@ export default function Home() {
         <header className="mb-8">
           <h1 className="text-3xl font-bold mb-3 transition-all duration-300">
             Hi, I'm
-            <span className="bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 text-transparent bg-clip-text pl-2">
-              <Typical
-                steps={names.flatMap(name => [name, 3000, "", 1000])} // Increased durations
-                loop={Infinity}
-                wrapper="span"
-              />
-            </span>
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 text-transparent bg-clip-text pl-2"
+            >
+              {names[index]}
+            </motion.span>
           </h1>
           <ul className="flex flex-row gap-7 text-gray-600 dark:text-gray-400 mb-2 transition-all duration-300 list-disc pl-5">
             <li>Remote Worker</li>
             <li>Based in Bogor</li>
           </ul>
           <p className="text-lg text-gray-700 dark:text-[#d4d4d4] transition-all duration-300">
-            Passionate and seasoned Software Engineer with a strong focus on frontend development. Proficient in TypeScript and well-versed in all aspects of web technologies. Collaborative team player dedicated to delivering efficient, scalable, and visually appealing web applications.
+          Experienced and passionate Software Engineer with a strong emphasis on frontend development. Skilled in TypeScript and well-versed in a wide range of web technologies. A collaborative team player committed to delivering efficient, scalable, and visually engaging web applications.
           </p>
         </header>
 
