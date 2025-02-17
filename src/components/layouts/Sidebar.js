@@ -91,7 +91,7 @@ const Sidebar = ({ children }) => {
         <div className="fixed top-0 left-0 w-full bg-white dark:bg-[#0a0a0a] shadow-md shadow-gray-200 dark:shadow-[#262626] p-4 flex items-center justify-between z-50 transition-all duration-300">
           <div className="flex items-center space-x-3">
             <img
-              src="./images/12209409.jpg"
+              src="/images/prib.jpg"
               alt="Profile"
               className="w-10 h-10 rounded-full border-2 dark:border-[#0a0a0a] shadow-lg shadow-gray-400 dark:shadow-[#262626]"
             />

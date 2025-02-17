@@ -72,7 +72,7 @@ export default function Home() {
           <p className="text-gray-500 dark:text-gray-400 mb-4">A short story of me</p>
           <div className="flex flex-col md:flex-row items-center gap-8">
             <img
-              src="/images/12209409.jpg" // Ganti dengan URL gambar Anda
+              src="/images/prib.jpg" // Ganti dengan URL gambar Anda
               alt="Profile"
               className="w-32 h-32 rounded-lg border-2 border-gray-300 dark:border-gray-900"
             />
