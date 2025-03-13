@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Masonry from "react-masonry-css";
 import Lightbox from "yet-another-react-lightbox";
+import { IoRocketOutline } from "react-icons/io5";
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { FaUsers, FaRegLightbulb, FaLaptopCode, FaPalette, FaComments, FaRocket, FaLinkedin, FaInstagram, FaGithub, FaPaintBrush } from 'react-icons/fa';
 import "yet-another-react-lightbox/styles.css";
 
 const photos = [
@@ -58,6 +62,56 @@ export default function ArtGallery() {
 
 
       <Lightbox slides={photos.map((photo) => ({ src: photo.src }))} open={index >= 0} close={() => setIndex(-1)} index={index} />
+
+        {/* Call to Action Section */}
+                <section className="p-6 mt-4 rounded-lg shadow-md bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 dark:from-indigo-900 dark:via-indigo-700 dark:to-indigo-500 text-white text-center mb-8 w-full transition-all duration-300">
+                  <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-2">
+                    <IoRocketOutline /> Let's Work Together!
+                  </h2>
+                  <p className="mb-4 text-gray-300 dark:text-gray-300">I'm open for freelance projects. Let's collaborate!</p>
+                  <Link href="https://wa.me/6285710386045" passHref>
+                    <motion.button
+                      className="px-6 py-2 rounded-md bg-gray-900 dark:bg-[#0a0a0a] text-white text-sm font-medium shadow-md hover:bg-gray-800"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Contact Me
+                    </motion.button>
+                  </Link>
+                </section>
+        
+                {/* Footer Section */}
+                <footer className="w-full">
+                  <div className="max-w-4xl mx-auto text-center">
+                    <nav className="flex justify-center gap-6 mb-4 text-sm font-medium">
+                      {["About", "Project", "Contact"].map((item, index) => (
+                        <a key={index} href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition duration-300">
+                          {item}
+                        </a>
+                      ))}
+                    </nav>
+                    
+                    <p className="text-base text-indigo-500 dark:text-gray-300 font-semibold">Let's Connect</p>
+                    <div className="flex justify-center gap-4 mt-3">
+                      {[ 
+                        { Icon: FaLinkedin, link: "#" },
+                        { Icon: FaInstagram, link: "#" },
+                        { Icon: FaGithub, link: "#" },
+                      ].map(({ Icon, link }, index) => (
+                        <a
+                          key={index}
+                          href={link}
+                          className="text-xl text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition duration-300"
+                          aria-label="Social Link"
+                        >
+                          <Icon />
+                        </a>
+                      ))}
+                    </div>
+                    
+                    <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} Satria Agysta. All rights reserved.</p>
+                  </div>
+                </footer>
     </div>
   );
 }
