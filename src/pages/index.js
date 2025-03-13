@@ -39,7 +39,7 @@ export default function Home() {
             </motion.span>
           </h1>
           <ul className="flex flex-row gap-7 text-gray-600 dark:text-gray-400 mb-2 transition-all duration-300 list-disc pl-5">
-            <li>Remote Worker</li>
+            <li>Hybrid Worker</li>
             <li>Based in Bogor</li>
           </ul>
           <p className="text-lg text-gray-700 dark:text-[#d4d4d4] transition-all duration-300">

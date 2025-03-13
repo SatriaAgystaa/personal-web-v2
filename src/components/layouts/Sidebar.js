@@ -56,16 +56,16 @@ const Sidebar = ({ children }) => {
             isOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          {["/", "/about", "/projects", "/contact"].map(
+          {["/", "/about", "/projects", "gallery", "/contact"].map(
             (path, index) => {
               const icons = [
                 <TbLayoutDashboard />,
                 <PiAtBold />,
                 <MdOutlineTask />,
-                <RiContactsLine />,
                 <LuPencilLine />,
+                <RiContactsLine />,
               ];
-              const labels = ["Home", "About", "Projects", "Contact"];
+              const labels = ["Home", "About", "Projects", "Gallery", "Contact"];
               const isActive = router.pathname === path;
               return (
                 <Link
@@ -188,19 +188,20 @@ const Sidebar = ({ children }) => {
           {/* Navigasi */}
           <nav className="mt-8 w-full">
             <ul className="w-full flex flex-col items-center">
-              {["/", "/about", "/projects", "/contact"].map(
+              {["/", "/about", "/projects", "/gallery", "/contact"].map(
                 (path, index) => {
                   const icons = [
                     <TbLayoutDashboard />,
                     <PiAtBold />,
                     <MdOutlineTask />,
-                    <RiContactsLine />,
                     <LuPencilLine />,
+                    <RiContactsLine />,
                   ];
                   const labels = [
                     "Home",
                     "About",
                     "Projects",
+                    "Gallery",
                     "Contact"
                   ];
                   const isActive = router.pathname === path;
