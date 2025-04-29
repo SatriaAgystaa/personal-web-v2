@@ -116,36 +116,10 @@ export default function Home() {
           </Link>
         </section>
 
-        {/* Footer Section */}
+        {/* Footer */}
         <footer className="w-full">
-          <div className="max-w-4xl mx-auto text-center">
-            <nav className="flex justify-center gap-6 mb-4 text-sm font-medium">
-              {["About", "Project", "Contact"].map((item, index) => (
-                <a key={index} href="#" className="hover:text-gray-700 dark:hover:text-gray-300 transition duration-300">
-                  {item}
-                </a>
-              ))}
-            </nav>
-            
-            <p className="text-base text-indigo-500 dark:text-gray-300 font-semibold">Let's Connect</p>
-            <div className="flex justify-center gap-4 mt-3">
-              {[ 
-                { Icon: FaLinkedin, link: "#" },
-                { Icon: FaInstagram, link: "#" },
-                { Icon: FaGithub, link: "#" },
-              ].map(({ Icon, link }, index) => (
-                <a
-                  key={index}
-                  href={link}
-                  className="text-xl text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition duration-300"
-                  aria-label="Social Link"
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
-            
-            <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} Satria Agysta. All rights reserved.</p>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-sm text-gray-500 dark:text-gray-400">&copy; {new Date().getFullYear()} Satria Agysta. All rights reserved.</p>
           </div>
         </footer>
       </div>
