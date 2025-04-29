@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import Masonry from "react-masonry-css";
 import Lightbox from "yet-another-react-lightbox";
 import Link from 'next/link';
@@ -39,6 +40,10 @@ export default function ArtGallery() {
 
   return (
     <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex flex-col justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
+       <Head>
+        <title>Gallery | Satria Agysta</title>
+        <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
+      </Head>
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-black dark:text-white mb-2 flex items-center justify-center gap-2">
           <FiImage className="w-6 h-6 text-black dark:text-white" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from "next/head";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { IoRocketOutline } from "react-icons/io5";
@@ -105,6 +106,10 @@ const projects = [
 export default function Projects() {
   return (
     <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0 dark:bg-[#070707]">
+       <Head>
+        <title>Projects | Satria Agysta</title>
+        <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
+      </Head>
       <div className="max-w-[1200px] w-full font-sans flex flex-col justify-center items-center">
         {/* Projects Section */}
         <section className="mb-8 w-full">

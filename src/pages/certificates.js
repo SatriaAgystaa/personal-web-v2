@@ -61,7 +61,7 @@ const CertificatesPage = () => {
   return (
     <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0 mx-auto">
       <Head>
-        <title>My Certificates | Satria Agysta</title>
+        <title>Certificates | Satria Agysta</title>
         <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
       </Head>
 

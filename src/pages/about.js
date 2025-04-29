@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { FaReact, FaNodeJs, FaCss3Alt, FaHtml5, FaGitAlt, FaJs, FaDatabase, FaDocker, FaFigma } from 'react-icons/fa';
+import Head from "next/head";
+import { FaReact, FaNodeJs, FaCss3Alt, FaHtml5, FaGitAlt, FaJs, FaDatabase, FaFigma } from 'react-icons/fa';
+import {
+  SiNextdotjs, SiTailwindcss, SiMysql, SiDbeaver
+} from 'react-icons/si';
 import { FiDownload, FiUser } from "react-icons/fi";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -40,18 +44,26 @@ function AutoScrollCarousel() {
 
   const techStacks = [
     { name: 'React', icon: <FaReact />, color: '#61DBFB' },
+    { name: 'Next.js', icon: <SiNextdotjs />, color: '#000000' },
     { name: 'Node.js', icon: <FaNodeJs />, color: '#8CC84B' },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: '#38B2AC' },
     { name: 'CSS3', icon: <FaCss3Alt />, color: '#1572B6' },
     { name: 'HTML5', icon: <FaHtml5 />, color: '#E44D26' },
-    { name: 'Git', icon: <FaGitAlt />, color: '#F34F29' },
     { name: 'JavaScript', icon: <FaJs />, color: '#F7DF1E' },
+    { name: 'Git', icon: <FaGitAlt />, color: '#F34F29' },
+    { name: 'MySQL', icon: <SiMysql />, color: '#00758F' },
+    { name: 'DBeaver', icon: <SiDbeaver />, color: '#372A47' },
     { name: 'Database', icon: <FaDatabase />, color: '#F0DB4F' },
-    { name: 'Docker', icon: <FaDocker />, color: '#2496ED' },
     { name: 'Figma', icon: <FaFigma />, color: '#F24E1E' },
+
   ];
   
   return (
     <div className="w-full overflow-hidden">
+      <Head>
+        <title>About Me | Satria Agysta</title>
+        <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
+      </Head>
       <div ref={containerRef} className="flex py-6 overflow-x-hidden whitespace-nowrap">
         <div ref={contentRef} className="flex gap-4">
           {techStacks.map((tech, index) => (
