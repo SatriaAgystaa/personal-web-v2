@@ -74,7 +74,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 text-transparent bg-clip-text pl-2"
+              className="bg-[#0d0d0d] dark:bg-white text-transparent bg-clip-text pl-2"
             >
               {names[index]}
             </motion.span>

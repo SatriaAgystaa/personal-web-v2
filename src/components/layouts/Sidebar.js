@@ -11,7 +11,7 @@ import { RiContactsLine } from "react-icons/ri";
 import { FaBars, FaTimes, FaInstagram, FaGithub, FaGitlab, FaLinkedin } from "react-icons/fa";
 import { LuPencilLine } from "react-icons/lu";
 import { BsMoonStars, BsSun } from "react-icons/bs";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { path: "/", icon: <TbLayoutDashboard />, label: "Home" },
@@ -74,42 +74,79 @@ const Sidebar = ({ children }) => {
   }, [darkMode]);
 
   // Mobile menu item component
-  const MobileNavItem = ({ item }) => {
+  const MobileNavItem = ({ item, index }) => {
     const isActive = router.pathname === item.path;
     return (
-      <Link
-        href={item.path}
-        className={`w-full flex items-center space-x-3 py-2 px-4 rounded-lg transition-all duration-300 ${
-          isActive
-            ? "bg-gray-300 dark:bg-[#262626] text-black dark:text-white shadow-lg"
-            : "hover:bg-gray-100 hover:text-gray-700 dark:hover:text-[#e6e6e6] dark:hover:bg-[#262626]"
-        }`}
+      <motion.div
+        initial={{ x: -20, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: index * 0.1 }}
       >
-        {React.cloneElement(item.icon, { className: "text-lg" })}
-        <span>{item.label}</span>
-      </Link>
+        <Link
+          href={item.path}
+          className={`w-full flex items-center space-x-3 py-2 px-4 rounded-lg transition-all duration-300 relative overflow-hidden ${
+            isActive
+              ? "bg-gray-300 dark:bg-[#262626] text-black dark:text-white shadow-lg"
+              : "hover:bg-gray-100 hover:text-gray-700 dark:hover:text-[#e6e6e6] dark:hover:bg-[#262626]"
+          }`}
+        >
+          {isActive && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-500/20 dark:to-blue-300/20"
+              animate={{ opacity: [0.3, 0.6, 0.3] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            />
+          )}
+          {React.cloneElement(item.icon, { className: "text-lg" })}
+          <span>{item.label}</span>
+        </Link>
+      </motion.div>
     );
   };
 
   // Desktop sidebar item component
-  const DesktopNavItem = ({ item, isOpen }) => {
+  const DesktopNavItem = ({ item, isOpen, index }) => {
     const isActive = router.pathname === item.path;
     return (
       <motion.li
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={`flex items-center justify-center mb-4 w-full p-2 rounded-lg transition-all duration-300 ${
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: index * 0.1 }}
+        className={`flex items-center mb-2 w-full p-2 rounded-lg transition-all duration-300 relative overflow-hidden ${
           isActive
             ? "bg-gray-300 dark:bg-[#262626] text-black dark:text-white shadow-lg"
             : "hover:bg-gray-100 hover:text-gray-700 dark:hover:text-[#e6e6e6] dark:hover:bg-[#262626]"
         }`}
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 0 15px rgba(0,0,0,0.2)"
+        }}
+        whileTap={{ scale: 0.95 }}
       >
+        {isActive && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-500/20 dark:to-blue-300/20"
+            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          />
+        )}
         <Link
           href={item.path}
-          className="flex items-center justify-center w-full"
+          className={`flex items-center w-full ${isOpen ? 'justify-start' : 'justify-center'}`}
         >
           {React.cloneElement(item.icon, { className: "text-lg" })}
-          {isOpen && <span className="ml-3 text-base">{item.label}</span>}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.span
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                exit={{ opacity: 0, width: 0 }}
+                className="ml-3 text-base whitespace-nowrap"
+              >
+                {item.label}
+              </motion.span>
+            )}
+          </AnimatePresence>
         </Link>
       </motion.li>
     );
@@ -158,10 +195,10 @@ const Sidebar = ({ children }) => {
           initial={{ y: -300 }}
           animate={{ y: isOpen ? 0 : -300 }}
           transition={{ type: "spring", damping: 25 }}
-          className={`fixed top-16 left-0 w-full bg-white dark:bg-[#0a0a0a] p-4 gap-2 flex flex-col items-center z-40`}
+          className={`fixed top-16 left-0 w-full bg-white dark:bg-[#0a0a0a] p-4 gap-2 flex flex-col items-start z-40`}
         >
           {navItems.map((item, index) => (
-            <MobileNavItem key={index} item={item} />
+            <MobileNavItem key={index} item={item} index={index} />
           ))}
         </motion.div>
       )}
@@ -171,7 +208,7 @@ const Sidebar = ({ children }) => {
         <motion.div
           initial={{ width: 64 }}
           animate={{ width: isOpen ? 256 : 64 }}
-          className={`fixed h-screen bg-white dark:bg-[#060606] text-gray-800 dark:text-white shadow-lg shadow-gray-400 dark:shadow-[#262626] rounded-r-3xl p-4 flex flex-col items-center z-50`}
+          className={`fixed h-screen bg-white dark:bg-[#060606] text-gray-800 dark:text-white shadow-lg shadow-gray-400 dark:shadow-[#262626] rounded-r-3xl p-4 flex flex-col z-50 overflow-hidden`}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
@@ -195,7 +232,7 @@ const Sidebar = ({ children }) => {
             <motion.div
               whileHover={{ scale: 1.1 }}
               className={`relative transition-all duration-300 ease-in-out ${
-                isOpen ? "w-24 h-24 mt-4" : "w-12 h-12 -mt-4"
+                isOpen ? "w-24 h-24 mt-4" : "w-12 h-12 mt-4"
               } rounded-full border-2 dark:border-[#0a0a0a] shadow-lg shadow-gray-400 dark:shadow-[#262626]`}
             >
               <img
@@ -234,11 +271,14 @@ const Sidebar = ({ children }) => {
             )}
           </div>
 
+          {/* Separator */}
+          <hr className="w-4/5 mx-auto my-4 border-gray-300 dark:border-gray-600" />
+
           {/* Navigation */}
-          <nav className="mt-8 w-full">
+          <nav className="mt-4 w-full">
             <ul className="w-full flex flex-col items-center">
               {navItems.map((item, index) => (
-                <DesktopNavItem key={index} item={item} isOpen={isOpen} />
+                <DesktopNavItem key={index} item={item} isOpen={isOpen} index={index} />
               ))}
             </ul>
           </nav>
