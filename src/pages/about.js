@@ -55,7 +55,6 @@ function AutoScrollCarousel() {
     { name: 'DBeaver', icon: <SiDbeaver />, color: '#372A47' },
     { name: 'Database', icon: <FaDatabase />, color: '#F0DB4F' },
     { name: 'Figma', icon: <FaFigma />, color: '#F24E1E' },
-
   ];
   
   return (
@@ -107,7 +106,7 @@ export default function Home() {
             <div className="text-lg text-gray-700 dark:text-gray-300 flex flex-col gap-4">
               <p>I'm Satria Agysta, a graduate of SMK Wikrama Bogor with a passion for front-end development and UI/UX design. I build responsive and interactive websites using technologies like Next.js, React, and Tailwind CSS.</p>
               <p>I create wireframes and prototypes in Figma to ensure a seamless user experience before moving into code. For me, good design is about both appearance and usability.</p>
-              <p>Outside of web development, I enjoy drawing and creating character animations using Clip Studio Paint as a form of creative expression.</p>
+              <p>Outside of web development, I enjoy digital art and creating character animations using Clip Studio Paint as a form of creative expression.</p>
               <p>I'm currently open to job opportunities or freelance projects — feel free to reach out if you'd like to work together!</p>
             </div>
           </div>

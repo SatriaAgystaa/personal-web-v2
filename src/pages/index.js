@@ -9,7 +9,7 @@ import { IoRocketOutline } from "react-icons/io5";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-const names = ["Satria Agysta", "Frontend Developer", "UI/UX Designer", "Illustrator"];
+const names = ["Satria Agysta", "Frontend Developer", "UI/UX Designer", "Digital Artist"];
 
 const gradientColors = [
   'from-indigo-500 to-indigo-700',
@@ -176,8 +176,8 @@ export default function Home() {
               },
               { 
                 icon: HiOutlinePaintBrush, 
-                title: 'Illustration', 
-                desc: 'Create simple digital illustrations and design elements for projects.' 
+                title: 'Digital Art', 
+                desc: 'Create digital illustrations and design elements for projects.' 
               },
               { 
                 icon: FaLaptopCode, 
