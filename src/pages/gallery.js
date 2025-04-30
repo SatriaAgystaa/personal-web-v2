@@ -22,7 +22,7 @@ const photos = [
   { src: "/images/anim1.gif", title: "Running Man Animation" },
   { src: "/images/anim2.gif", title: "Animation Man Looking Ahead" },
   { src: "/images/wa8.jpeg", title: "Banner Fruit Choctail" },
-  { src: "/images/hiash.png", title: "Fierce Female Warrior with Axe" },
+  { src: "/images/female.png", title: "Fierce Female Warrior with Axe" },
   { src: "/images/moma.png", title: "Adorable Girl Looking at a Cat" },
   { src: "/images/sagata.png", title: "Skater Boy Reading" },
   { src: "/images/wa3.jpeg", title: "Wikrama Assassin Student" },
