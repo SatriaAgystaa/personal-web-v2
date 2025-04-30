@@ -149,15 +149,7 @@ export default function Home() {
         {/* Services Section */}
         <section className="mb-8 w-full">
           <h2 className="text-2xl font-medium text-gray-900 dark:text-white mb-6 transition-all duration-300">What I Can Do</h2>
-          <div 
-            ref={servicesRef}
-            className="flex gap-6 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            onMouseDown={(e) => handleMouseDown(e, servicesRef)}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={(e) => handleMouseMove(e, servicesRef)}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[ 
               { 
                 icon: FaLaptopCode, 
@@ -170,19 +162,9 @@ export default function Home() {
                 desc: 'Create clean, intuitive interfaces with good user experience principles in mind.' 
               },
               { 
-                icon: FaRegCommentDots, 
-                title: 'Frontend Assistance', 
-                desc: 'Help implement designs into functional components and pages.' 
-              },
-              { 
                 icon: HiOutlinePaintBrush, 
                 title: 'Digital Art', 
                 desc: 'Create digital illustrations and design elements for projects.' 
-              },
-              { 
-                icon: FaLaptopCode, 
-                title: 'Code Maintenance', 
-                desc: 'Help maintain and update existing codebases with clean, readable code.' 
               },
               { 
                 icon: LuPalette, 
@@ -192,7 +174,7 @@ export default function Home() {
             ].map((service, index) => (
               <motion.div
                 key={index}
-                className="flex-shrink-0 p-6 rounded-lg shadow-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white flex flex-col w-72"
+                className="p-6 rounded-lg shadow-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white"
                 whileHover={{ scale: 1.03 }}
               >
                 <h3 className="text-lg font-medium flex items-center gap-2 mb-2">
