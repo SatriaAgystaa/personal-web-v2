@@ -51,18 +51,21 @@ const Sidebar = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
   const router = useRouter();
 
-  // Initialize state from localStorage and check screen size
   useEffect(() => {
     const savedDarkMode = localStorage.getItem("darkMode") === "true";
     setDarkMode(savedDarkMode);
     
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) setIsOpen(false); // Close mobile menu when resizing to desktop
+    };
+    
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Apply dark mode class to document
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -73,7 +76,6 @@ const Sidebar = ({ children }) => {
     }
   }, [darkMode]);
 
-  // Mobile menu item component
   const MobileNavItem = ({ item, index }) => {
     const isActive = router.pathname === item.path;
     return (
@@ -81,30 +83,26 @@ const Sidebar = ({ children }) => {
         initial={{ x: -20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: index * 0.1 }}
+        className="w-full"
       >
         <Link
           href={item.path}
-          className={`w-full flex items-center space-x-3 py-2 px-4 rounded-lg transition-all duration-300 relative overflow-hidden ${
+          className={`flex items-center space-x-4 py-3 px-4 rounded-lg transition-all duration-300 ${
             isActive
-              ? "bg-gray-300 dark:bg-[#262626] text-black dark:text-white shadow-lg"
-              : "hover:bg-gray-100 hover:text-gray-700 dark:hover:text-[#e6e6e6] dark:hover:bg-[#262626]"
+              ? "bg-gray-200 dark:bg-[#262626] text-black dark:text-white"
+              : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#262626]"
           }`}
+          onClick={() => setIsOpen(false)}
         >
-          {isActive && (
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-500/20 dark:to-blue-300/20"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            />
-          )}
-          {React.cloneElement(item.icon, { className: "text-lg" })}
-          <span>{item.label}</span>
+          <span className="text-xl">
+            {React.cloneElement(item.icon, { className: "text-lg" })}
+          </span>
+          <span className="font-medium">{item.label}</span>
         </Link>
       </motion.div>
     );
   };
 
-  // Desktop sidebar item component
   const DesktopNavItem = ({ item, isOpen, index }) => {
     const isActive = router.pathname === item.path;
     return (
@@ -153,27 +151,27 @@ const Sidebar = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-[#0a0a0a]">
       {/* Mobile Header */}
       {isMobile && (
-        <div className="fixed top-0 left-0 w-full bg-white dark:bg-[#0a0a0a] shadow-md dark:shadow-[#262626] p-4 flex items-center justify-between z-50">
+        <header className="fixed top-0 left-0 right-0 bg-white dark:bg-[#0a0a0a] shadow-md dark:shadow-gray-800 p-4 flex items-center justify-between z-50">
           <div className="flex items-center space-x-3">
             <motion.img
               whileHover={{ rotate: 5 }}
               src="/images/prib.jpg"
               alt="Profile"
-              className="w-10 h-10 rounded-full border-2 dark:border-[#0a0a0a] shadow-lg shadow-gray-400 dark:shadow-[#262626]"
+              className="w-10 h-10 rounded-full border-2 border-gray-200 dark:border-gray-700 shadow-md"
             />
             <span className="font-semibold text-gray-800 dark:text-white">
               Satria Agysta
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setDarkMode(!darkMode)}
-              className="text-gray-800 dark:text-white p-2 rounded-full"
+              className="text-gray-800 dark:text-white p-1 rounded-full"
             >
               {darkMode ? <BsSun size={20} /> : <BsMoonStars size={20} />}
             </motion.button>
@@ -181,31 +179,51 @@ const Sidebar = ({ children }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 dark:text-white"
+              className="text-gray-800 dark:text-white p-1 rounded-full"
             >
               {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </motion.button>
           </div>
-        </div>
+        </header>
       )}
 
       {/* Mobile Menu */}
-      {isMobile && (
-        <motion.div
-          initial={{ y: -300 }}
-          animate={{ y: isOpen ? 0 : -300 }}
-          transition={{ type: "spring", damping: 25 }}
-          className={`fixed top-16 left-0 w-full bg-white dark:bg-[#0a0a0a] p-4 gap-2 flex flex-col items-start z-40`}
-        >
-          {navItems.map((item, index) => (
-            <MobileNavItem key={index} item={item} index={index} />
-          ))}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isMobile && isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ type: "spring", damping: 25 }}
+            className="fixed top-16 left-0 right-0 bg-white dark:bg-[#0a0a0a] shadow-lg dark:shadow-gray-800 z-40"
+          >
+            <div className="p-4 flex flex-col space-y-2">
+              {navItems.map((item, index) => (
+                <MobileNavItem key={index} item={item} index={index} />
+              ))}
+              
+              <div className="flex justify-center space-x-6 pt-4 border-t border-gray-200 dark:border-gray-700 mt-2">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3 }}
+                    className={`text-gray-700 dark:text-gray-300 ${social.color} text-xl`}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Sidebar */}
       {!isMobile && (
-        <motion.div
+        <motion.aside
           initial={{ width: 64 }}
           animate={{ width: isOpen ? 256 : 64 }}
           className={`fixed h-screen bg-white dark:bg-[#060606] text-gray-800 dark:text-white shadow-lg shadow-gray-400 dark:shadow-[#262626] rounded-r-3xl p-4 flex flex-col z-50 overflow-hidden`}
@@ -213,7 +231,6 @@ const Sidebar = ({ children }) => {
           onMouseLeave={() => setIsOpen(false)}
         >
           <div className="flex flex-col items-center w-full relative pt-8">
-            {/* Background Banner */}
             {isOpen && (
               <div className="absolute top-0 w-full h-24 rounded-md bg-cover bg-center bg-[url('/images/bg.jpg')] dark:bg-[url('/images/bg.jpeg')]">
                 <motion.div 
@@ -228,7 +245,6 @@ const Sidebar = ({ children }) => {
               </div>
             )}
 
-            {/* Profile Image */}
             <motion.div
               whileHover={{ scale: 1.1 }}
               className={`relative transition-all duration-300 ease-in-out ${
@@ -242,7 +258,6 @@ const Sidebar = ({ children }) => {
               />
             </motion.div>
 
-            {/* Profile Info (only shown when expanded) */}
             {isOpen && (
               <motion.div 
                 initial={{ opacity: 0 }}
@@ -271,10 +286,8 @@ const Sidebar = ({ children }) => {
             )}
           </div>
 
-          {/* Separator */}
-          <hr className="w-4/5 mx-auto my-4 border-gray-300 dark:border-gray-600" />
+          <hr className="w-4/5 mx-auto mt-6 border-gray-300 dark:border-gray-600" />
 
-          {/* Navigation */}
           <nav className="mt-4 w-full">
             <ul className="w-full flex flex-col items-center">
               {navItems.map((item, index) => (
@@ -283,7 +296,6 @@ const Sidebar = ({ children }) => {
             </ul>
           </nav>
 
-          {/* Dark Mode Toggle */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -294,7 +306,7 @@ const Sidebar = ({ children }) => {
           >
             {darkMode ? <BsSun size={18} /> : <BsMoonStars size={18} />}
           </motion.button>
-        </motion.div>
+        </motion.aside>
       )}
 
       {/* Main Content */}
