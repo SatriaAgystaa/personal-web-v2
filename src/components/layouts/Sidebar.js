@@ -286,9 +286,9 @@ const Sidebar = ({ children }) => {
             )}
           </div>
 
-          <hr className="w-4/5 mx-auto mt-6 border-gray-300 dark:border-gray-600" />
+          <hr className="w-4/5 mx-auto mt-8 border-gray-300 dark:border-gray-600" />
 
-          <nav className="mt-4 w-full">
+          <nav className="mt-8 w-full">
             <ul className="w-full flex flex-col items-center">
               {navItems.map((item, index) => (
                 <DesktopNavItem key={index} item={item} isOpen={isOpen} index={index} />

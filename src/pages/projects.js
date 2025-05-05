@@ -3,11 +3,13 @@ import Head from "next/head";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { IoRocketOutline } from "react-icons/io5";
-import { FiCode } from "react-icons/fi";
+import { FiCode, FiDownload, FiExternalLink } from "react-icons/fi";
 import { FaHtml5, FaCss3Alt, FaBootstrap, FaLaravel } from 'react-icons/fa';
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { SiExpress, SiDbeaver, SiPostgresql, SiFigma, SiVite, SiPostman } from "react-icons/si";
 import { DiMysql } from "react-icons/di";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const projects = [
   {
@@ -22,6 +24,7 @@ const projects = [
     ],
     status: "Finished",
     link: "https://github.com/SatriaAgystaa/AppsRekapSatria.git",
+    demoLink: "",
     isPrivate: false,
     type: "School Project - SMK Wikrama Bogor"
   },
@@ -36,6 +39,7 @@ const projects = [
     ],
     status: "Finished",
     link: "https://personal-web-satria.vercel.app/",
+    demoLink: "https://personal-web-satria.vercel.app/",
     isPrivate: false,
     type: "Personal Project"
   },
@@ -54,8 +58,10 @@ const projects = [
       { icon: SiPostman, color: "#FF6C37" }
     ],
     status: "Finished",
+    demoLink: "",
     isPrivate: true,
-    type: "Company Project - PT Narantraya"
+    type: "Company Project - PT Narantraya",
+    proofLink: "/images/proofs/Sertifikat-Magang-Satria.pdf"
   },
   {
     title: "BarenganAja",
@@ -70,8 +76,10 @@ const projects = [
       { icon: SiPostman, color: "#FF6C37" }
     ],
     status: "Finished",
+    demoLink: "",
     isPrivate: true,
-    type: "Company Project - PT Narantraya"
+    type: "Company Project - PT Narantraya",
+    proofLink: "/images/proofs/Surat-Selesai-Project-Satria.pdf"
   },
   {
     title: "Public Complaints",
@@ -86,6 +94,7 @@ const projects = [
     ],
     status: "Finished",
     link: "https://github.com/SatriaAgystaa/Ujikom-Pengaduan.git",
+    demoLink: "",
     isPrivate: false,
     type: "School Project - SMK Wikrama Bogor"
   },
@@ -98,14 +107,43 @@ const projects = [
     ],
     status: "On Going",
     link: "https://www.figma.com/design/VNQkGENWuymFZQ3iuAKtdk/Feastic?node-id=0-1&t=zxnZaSwAjVtqvxyQ-1",
+    demoLink: "",
     isPrivate: false,
     type: "Team Project - Student SMK Wikrama Bogor"
+  },
+  {
+    title: "Cloudy Z",
+    desc: "Weather forecast application with real-time data from weather API. Features include 5-day forecast, location-based weather, and beautiful UI animations. Built with Next.js and Tailwind CSS.",
+    image: "/images/cloudyz.png",
+    techIcons: [
+      { icon: RiNextjsFill, color: "#131313" },
+      { icon: RiTailwindCssFill, color: "#34A4FF" },
+      { icon: SiVite, color: "#646CFF" }
+    ],
+    status: "Finished",
+    link: "https://github.com/SatriaAgystaa/cloudy-z",
+    demoLink: "https://cloudyz-web.vercel.app/",
+    isPrivate: false,
+    type: "Personal Project"
   }   
 ];
 
 export default function Projects() {
+  const handleDemoClick = (demoLink) => {
+    if (!demoLink) {
+      toast.info('Demo link not available for this project', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  };
+
   return (
-    <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0 dark:bg-[#070707]">
+    <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
        <Head>
         <title>Projects | Satria Agysta</title>
         <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
@@ -156,18 +194,67 @@ export default function Projects() {
                     </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400 italic">{project.type}</p>
                   </div>
-                  {!project.isPrivate ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm hover:bg-indigo-700 transition-all"
-                    >
-                      View Project
-                    </a>
-                  ) : (
-                    <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 italic">Private Project</p>
-                  )}
+                  <div className="mt-4">
+  {!project.isPrivate ? (
+    // Tampilan untuk project PUBLIC
+    <div className="flex gap-2">
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700 transition-all flex-1"
+      >
+        <FiCode className="mr-2" /> Source Code
+      </a>
+      
+      {project.demoLink ? (
+        <a
+          href={project.demoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition-all flex-1"
+        >
+          <FiExternalLink className="mr-2" /> Live Demo
+        </a>
+      ) : (
+        <button
+          onClick={() => handleDemoClick(project.demoLink)}
+          className="inline-flex items-center justify-center bg-gray-400 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed flex-1"
+          disabled
+        >
+          <FiExternalLink className="mr-2" /> Demo
+        </button>
+      )}
+    </div>
+  ) : (
+    // Tampilan untuk project PRIVATE
+    <div className="flex flex-col gap-2">
+      <p className="text-sm text-gray-500 dark:text-gray-400 italic text-center">Private Project</p>
+      <div className="flex gap-2">
+        {project.proofLink && (
+          <a
+            href={project.proofLink}
+            download
+            className="inline-flex items-center justify-center bg-gray-800 text-white px-4 py-2 rounded-lg text-sm hover:bg-gray-900 transition-all flex-1"
+          >
+            <FiDownload className="mr-2" /> Proof
+          </a>
+        )}
+        <button
+          onClick={() => handleDemoClick(project.demoLink)}
+          className={`inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm flex-1 ${
+            project.demoLink 
+              ? 'bg-green-600 hover:bg-green-700 text-white' 
+              : 'bg-gray-400 text-white cursor-not-allowed'
+          }`}
+          disabled={!project.demoLink}
+        >
+          <FiExternalLink className="mr-2" /> {project.demoLink ? 'Live Demo' : 'Demo'}
+        </button>
+      </div>
+    </div>
+  )}
+</div>
                 </div>
               </motion.div>
             ))}
