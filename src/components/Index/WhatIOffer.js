@@ -52,7 +52,7 @@ export default function WhatIOffer() {
         {offerings.map((item, index) => (
           <motion.div
             key={index}
-            className="p-5 sm:p-6 rounded-xl border border-gray-100 dark:border-gray-900 bg-white dark:bg-[#0a0a0a] hover:shadow-md transition-all duration-300"
+            className="p-5 sm:p-6 rounded-xl border border-gray-100 dark:border-gray-900 bg-white/50 dark:bg-[#0a0a0a]/50 hover:shadow-md transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 * index }}

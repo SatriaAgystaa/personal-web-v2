@@ -58,7 +58,7 @@ export default function CareerSection() {
         {careerData.map((job, index) => (
           <motion.div
             key={index}
-            className="p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-[#262626] bg-white dark:bg-[#0a0a0a] transition-all"
+            className="p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-[#262626] bg-white/50 dark:bg-[#0a0a0a]/50 transition-all"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}

@@ -66,7 +66,7 @@ const Layout = ({ children, toggleDarkMode }) => {
       const starsCtx = starsCanvas.getContext('2d');
       for (let i = 0; i < starCount; i++) {
         stars.push({
-          x: Math.random() * starsCanvas.width,
+          x: Math.random() * starsCanvas.width, 
           y: Math.random() * starsCanvas.height,
           size: 0.5 + Math.random() * 1.5, // Smaller stars
           brightness: 0.2 + Math.random() * 0.8,

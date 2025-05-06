@@ -21,7 +21,7 @@ const projects = [
     ],
     status: "Finished",
     link: "https://github.com/SatriaAgystaa/AppsRekapSatria.git",
-    demoLink: "#",
+    demoLink: "",
     isPrivate: false,
     type: "School Project - SMK Wikrama Bogor"
   },

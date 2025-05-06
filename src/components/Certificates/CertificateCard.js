@@ -9,7 +9,7 @@ const CertificateCard = ({ cert, handleViewDetails }) => {
     <div className="mb-12 px-4 sm:px-0">
         <motion.div
         whileHover={{ y: -5 }}
-        className="group relative overflow-hidden rounded-xl bg-white dark:bg-[#0d0d0d] shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-800 flex flex-col h-full"
+        className="group relative overflow-hidden rounded-xl bg-white/50 dark:bg-[#0d0d0d]/50 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-800 flex flex-col h-full"
         >
         <div className="relative h-48 w-full overflow-hidden">
             <Image

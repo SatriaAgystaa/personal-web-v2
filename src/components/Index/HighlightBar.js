@@ -7,7 +7,7 @@ export default function HighlightBar() {
   return (
     <div className="px-4 sm:px-0">
       <motion.div 
-        className="bg-white dark:bg-[#0a0a0a] rounded-lg p-4 sm:p-6 mb-12 sm:mb-20 grid grid-cols-1 md:grid-cols-3 gap-4 border border-gray-100 dark:border-gray-900 sm:gap-6 shadow-md hover:shadow-lg transition-shadow"
+        className="bg-white/50 dark:bg-[#0a0a0a]/50 rounded-lg p-4 sm:p-6 mb-12 sm:mb-20 grid grid-cols-1 md:grid-cols-3 gap-4 border border-gray-100 dark:border-gray-900 sm:gap-6 shadow-md hover:shadow-lg transition-shadow"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
