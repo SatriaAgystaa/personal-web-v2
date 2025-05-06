@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import CTA from "../components/Gallery/CallToAction";
+import Footer from "../components/Gallery/Footer";
 import Masonry from "react-masonry-css";
 import Lightbox from "yet-another-react-lightbox";
 import Link from 'next/link';
@@ -39,33 +41,42 @@ export default function ArtGallery() {
   const [index, setIndex] = useState(-1);
 
   return (
-    <div className="sm:w-full md:w-3/5 font-sans px-8 py-6 flex flex-col justify-center overflow-hidden mt-16 sm:mt-16 md:mt-0">
-       <Head>
+    <div className="container mx-auto px-6 py-8 max-w-5xl font-sans mt-16 sm:mt-16 md:mt-0">
+      <Head>
         <title>Gallery | Satria Agysta</title>
         <meta name="description" content="Certificates and achievements earned by Satria Agysta" />
       </Head>
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-black dark:text-white mb-2 flex items-center justify-center gap-2">
-          <FiImage className="w-6 h-6 text-black dark:text-white" />
-          Gallery
+
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-6 sm:mb-8 px-4 sm:px-0"
+      >
+        <div className="inline-flex items-center justify-center p-2 sm:p-3 rounded-full bg-blue-100 dark:bg-blue-900/50 mb-3 sm:mb-4">
+          <FiImage className="text-blue-600 dark:text-blue-400 w-5 h-5 sm:w-6 sm:h-6" />
+        </div>
+        <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+          My Gallery
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-sm">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4 sm:mb-6 px-4 sm:px-0">
           A visual collection of moments, designs, and inspirations.
         </p>
-      </div>
-
-      <hr className="border-t border-gray-300 dark:border-gray-700 mb-10" />
+        <hr className="border-t border-gray-200 dark:border-gray-700" />
+      </motion.div>
 
       <Masonry
         breakpointCols={{ default: 3, 1024: 2, 640: 1 }}
         className="flex gap-4"
-        columnClassName="masonry-column space-y-4 w-full"
+        columnClassName="masonry-column space-y-4 w-full px-4 sm:px-0 mb-12"
       >
         {photos.map((photo, i) => (
-          <div
+          <motion.div
             key={i}
-            className="relative cursor-pointer overflow-hidden rounded-lg shadow-lg shadow-gray-400 dark:shadow-gray-900 group"
+            className="relative cursor-pointer overflow-hidden rounded-lg shadow-lg shadow-gray-400 dark:shadow-gray-900 group hover:shadow-xl hover:shadow-gray-500 dark:hover:shadow-gray-800 transition-shadow duration-300"
             onClick={() => setIndex(i)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <img
               src={photo.src}
@@ -75,7 +86,7 @@ export default function ArtGallery() {
             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center text-white">
               <h2 className="text-lg font-semibold">{photo.title}</h2>
             </div>
-          </div>
+          </motion.div>
         ))}
       </Masonry>
 
@@ -86,29 +97,10 @@ export default function ArtGallery() {
         index={index} 
       />
 
-      <section className="p-6 mt-4 rounded-lg shadow-md bg-gradient-to-r from-indigo-500 via-indigo-700 to-indigo-900 dark:from-indigo-900 dark:via-indigo-700 dark:to-indigo-500 text-white text-center mb-8 w-full">
-        <h2 className="text-2xl font-medium flex items-center justify-center gap-2 mb-2">
-          <IoRocketOutline /> Let's Work Together!
-        </h2>
-        <p className="mb-4 text-gray-300 dark:text-gray-300">I'm open for freelance projects. Let's collaborate!</p>
-        <Link href="https://wa.me/6285710386045" passHref>
-          <motion.button
-            className="px-6 py-2 rounded-md bg-gray-900 dark:bg-[#0a0a0a] text-white text-sm font-medium shadow-md hover:bg-gray-800"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact Me
-          </motion.button>
-        </Link>
-      </section>
+      <CTA />
+
+      <Footer />
       
-      <footer className="w-full">
-        <div className="flex flex-col items-center justify-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Satria Agysta. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

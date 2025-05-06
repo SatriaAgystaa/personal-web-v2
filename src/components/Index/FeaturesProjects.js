@@ -88,7 +88,7 @@ export default function FeaturesProjects() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="group relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-900 bg-white dark:bg-[#0a0a0a] hover:shadow-lg transition-all duration-300"
+            className="group relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-900 bg-white/50 dark:bg-[#0a0a0a]/50 hover:shadow-lg transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 * index }}

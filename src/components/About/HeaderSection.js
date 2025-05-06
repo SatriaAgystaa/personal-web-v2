@@ -1,22 +1,27 @@
 "use client";
 import { FiUser } from "react-icons/fi";
+import { motion } from 'framer-motion';
 
 export default function HeaderSection() {
   return (
     <header className="mb-8 flex flex-col px-4 sm:px-0 pt-16 sm:pt-0">
-      {/* Title Section */}
-      <div className="text-center mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-2 flex items-center justify-center gap-2">
-          <FiUser className="w-5 h-5 sm:w-6 sm:h-6" />
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-6 sm:mb-8"
+      >
+        <div className="inline-flex items-center justify-center p-2 sm:p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/50 mb-3 sm:mb-4">
+          <FiUser className="text-emerald-600 dark:text-emerald-400 w-5 h-5 sm:w-6 sm:h-6" />
+        </div>
+        <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
           About Me
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base mx-auto">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4 sm:mb-6 px-4 sm:px-0">
           Get to know more about my background, skills, and passion in tech.
         </p>
-      </div>
-
-      {/* Divider */}
-      <hr className="border-t border-gray-200 dark:border-gray-700 mb-6 sm:mb-8" />
+        <hr className="border-t border-gray-200 dark:border-gray-700" />
+      </motion.div>
 
       <div className="flex flex-col md:flex-row items-center gap-8">
         <img

@@ -226,7 +226,7 @@ const Sidebar = ({ children }) => {
         <motion.aside
           initial={{ width: 64 }}
           animate={{ width: isOpen ? 256 : 64 }}
-          className={`fixed h-screen bg-white dark:bg-[#060606] text-gray-800 dark:text-white shadow-lg shadow-gray-400 dark:shadow-[#262626] rounded-r-3xl p-4 flex flex-col z-50 overflow-hidden`}
+          className={`fixed h-screen bg-white/50 dark:bg-[#0a0a0a]/50 text-gray-800 dark:text-white shadow-lg shadow-gray-400 dark:shadow-[#262626] rounded-r-3xl p-4 flex flex-col z-50 overflow-hidden`}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
